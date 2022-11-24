@@ -136,3 +136,4 @@ docs-src/
 *.dat
 src/datas
 src/apis/examples/datas
+.vscode/settings.json

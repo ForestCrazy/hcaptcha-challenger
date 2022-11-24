@@ -81,7 +81,7 @@ class Memory:
 
 
 class Assets:
-    GITHUB_RELEASE_API = "https://api.github.com/repos/qin2dim/hcaptcha-challenger/releases"
+    GITHUB_RELEASE_API = "https://api.github.com/repos/ForestCrazy/hcaptcha-challenger/releases"
 
     NAME_ASSETS = "assets"
     NAME_ASSET_NAME = "name"

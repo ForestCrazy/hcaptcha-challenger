@@ -176,7 +176,7 @@ class Assets:
 
 class PluggableObjects:
     URL_REMOTE_OBJECTS = (
-        "https://raw.githubusercontent.com/QIN2DIM/hcaptcha-challenger/main/src/objects.yaml"
+        "https://raw.githubusercontent.com/ForestCrazy/hcaptcha-challenger/main/src/objects.yaml"
     )
 
     def __init__(self, path_objects: str):

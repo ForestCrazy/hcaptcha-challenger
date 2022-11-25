@@ -44,7 +44,7 @@ def _motion(sample_site: str, ctx, challenger: solver.HolyChallenger) -> typing.
 @logger.catch()
 def runner(
     sample_site: str,
-    lang: typing.Optional[str] = "zh",
+    lang: typing.Optional[str] = "en",
     silence: typing.Optional[bool] = False,
     onnx_prefix: typing.Optional[str] = None,
     screenshot: typing.Optional[bool] = False,

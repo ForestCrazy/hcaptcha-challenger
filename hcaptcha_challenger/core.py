@@ -186,7 +186,7 @@ class HolyChallenger:
     def __init__(
         self,
         dir_workspace: typing.Optional[str] = None,
-        lang: typing.Optional[str] = "zh",
+        lang: typing.Optional[str] = "en",
         dir_model: typing.Optional[str] = None,
         onnx_prefix: typing.Optional[str] = None,
         screenshot: typing.Optional[bool] = False,

@@ -93,6 +93,8 @@ class Assets:
 
     # Cache validity period: 2h
     CACHE_CONTROL = 7200
+    # Cache expiration time: 2d
+    CACHE_EXPIRATION = 172800
 
     def __init__(self, fn: str, dir_assets: str = None):
         self.fn = fn
@@ -111,6 +113,7 @@ class Assets:
             asset_name = assets[-1]
             if int(asset_name) + self.CACHE_CONTROL > int(time.time()):
                 recoded_name = join(self._dir_assets, asset_name)
+                logger.debug(f"recoded_name: {recoded_name}")
                 try:
                     with open(recoded_name, "r", encoding="utf8") as file:
                         self._fn2assets = json.load(file)
@@ -121,10 +124,15 @@ class Assets:
         """仅在 Assets._pull 网络请求发起后实现，用于更新本地缓存的内容及时间戳"""
         os.makedirs(self._dir_assets, exist_ok=True)
         for asset_fn in os.listdir(self._dir_assets):
-            asset_src = join(self._dir_assets, asset_fn)
-            asset_dst = join(self._dir_assets, f"_{asset_fn}")
-            shutil.move(asset_src, asset_dst)
+            if int(time.time()) - self.CACHE_EXPIRATION > int(asset_fn):
+                os.remove(join(self._dir_assets, asset_fn))
+            else:
+                asset_src = join(self._dir_assets, asset_fn)
+                asset_dst = join(self._dir_assets, f"{asset_fn}")
+                shutil.move(asset_src, asset_dst)
+            logger.debug(f"move asset: {asset_src} -> {asset_dst}")
         recoded_name = join(self._dir_assets, str(int(time.time())))
+        logger.debug(f"recoded_name: {recoded_name}")
         with open(recoded_name, "w", encoding="utf8") as file:
             json.dump(self._fn2assets, file)
 

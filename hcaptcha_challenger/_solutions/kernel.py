@@ -318,6 +318,9 @@ def _request_asset(asset_download_url: str, asset_path: str, fn_tag: str):
         scheme, netloc = parser.scheme, parser.netloc
         asset_download_url = f"{scheme}://{netloc}/{asset_download_url}"
     with open(asset_path, "wb") as file, requests.get(asset_download_url, **_params) as response:
-        for chunk in response.iter_content(chunk_size=1024):
-            if chunk:
-                file.write(chunk)
+        if response.status_code == 200:
+            for chunk in response.iter_content(chunk_size=1024):
+                if chunk:
+                    file.write(chunk)
+        else:
+            logger.error('fetch asset failed: {response}, status code: {response.status_code}')

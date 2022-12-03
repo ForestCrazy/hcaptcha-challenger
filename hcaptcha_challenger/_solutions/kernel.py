@@ -130,7 +130,7 @@ class Assets:
                 asset_src = join(self._dir_assets, asset_fn)
                 asset_dst = join(self._dir_assets, f"{asset_fn}")
                 shutil.move(asset_src, asset_dst)
-            logger.debug(f"move asset: {asset_src} -> {asset_dst}")
+                logger.debug(f"move asset: {asset_src} -> {asset_dst}")
         recoded_name = join(self._dir_assets, str(int(time.time())))
         logger.debug(f"recoded_name: {recoded_name}")
         with open(recoded_name, "w", encoding="utf8") as file:
